@@ -33,8 +33,8 @@ index = 1:1:length(SNR);
 BER = zeros(1,length(SNR));
 BER_analytical = zeros(1,length(SNR));
 for SNR_index = index
-    xmod_noised = awgn(complex(xmod),SNR(SNR_index));
-    %xmod_noised = xmod + 1/sqrt(2)*10^(-SNR(SNR_index)/20) * randn(1,N);
+    %xmod_noised = awgn(complex(xmod),SNR(SNR_index));
+    xmod_noised = xmod + 1/sqrt(2)*10^(-SNR(SNR_index)/20) * randn(1,N);
     %detect
     for i = 1:1:length(xmod_noised)
         if(xmod_noised(i)>0)
