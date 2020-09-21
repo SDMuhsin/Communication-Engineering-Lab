@@ -1,0 +1,200 @@
+%% This Beamer template is based on the one found here: https://github.com/sanhacheong/stanford-beamer-presentation, and edited to be used for Stanford ARM Lab
+
+\documentclass[10pt]{beamer}
+%\mode<presentation>{}
+
+\usepackage{media9}
+\usepackage{amssymb,amsmath,amsthm,enumerate}
+\usepackage[utf8]{inputenc}
+\usepackage{array}
+\usepackage[parfill]{parskip}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{bm}
+\usepackage{amsfonts,amscd}
+\usepackage[]{units}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{tcolorbox}
+\usepackage{physics}
+
+% Enable colored hyperlinks
+\hypersetup{colorlinks=true}
+
+% The following three lines are for crossmarks & checkmarks
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+% Numbered captions of tables, pictures, etc.
+\setbeamertemplate{caption}[numbered]
+
+%\usepackage[superscript,biblabel]{cite}
+\usepackage{algorithm2e}
+\renewcommand{\thealgocf}{}
+
+% Bibliography settings
+\usepackage[style=ieee]{biblatex}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+\addbibresource{references.bib}
+
+% Glossary entries
+\usepackage[acronym]{glossaries}
+\newacronym{ML}{ML}{machine learning}
+\newacronym{HRI}{HRI}{human-robot interactions}
+\newacronym{RNN}{RNN}{Recurrent Neural Network}
+\newacronym{LSTM}{LSTM}{Long Short-Term Memory}
+
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\theoremstyle{definition}
+
+\newcommand{\empy}[1]{{\color{darkorange}\emph{#1}}}
+\newcommand{\empr}[1]{{\color{cardinalred}\emph{#1}}}
+\newcommand{\examplebox}[2]{
+\begin{tcolorbox}[colframe=darkcardinal,colback=boxgray,title=#1]
+#2
+\end{tcolorbox}}
+
+\usetheme{Stanford} 
+\input{./style_files_stanford/my_beamer_defs.sty}
+\logo{\includegraphics[height=0.4in]{./style_files_stanford/SU_New_BlockStree_2color.png}}
+
+% commands to relax beamer and subfig conflicts
+% see here: https://tex.stackexchange.com/questions/426088/texlive-pretest-2018-beamer-and-subfig-collide
+\makeatletter
+\let\@@magyar@captionfix\relax
+\makeatother
+
+\title[BPSK]{Experiment 2 :BPSK System and Bit Error (BER) performance}
+%\subtitle{Subtitle Of Presentation}
+
+%\beamertemplatenavigationsymbolsempty
+
+\begin{document}
+
+\author[Sayed Muhsin B170011EC]{
+	\begin{tabular}{c} 
+	\Large
+	EC4091D Communication Engineering Lab II\\
+    \footnotesize \href{mailto:authoremail@stanford.edu}{sayed\_b170011ec@nitc.ac.in}
+\end{tabular}
+\vspace{-4ex}}
+
+\institute{
+	\vskip 5pt
+	\vskip 5pt
+	Department of Electronics and Communication Engineering\\
+	National Institute of Technology, Calicut\\
+	\vskip 3pt
+}
+
+% \date{June 15, 2020}
+\date{\today}
+
+\begin{noheadline}
+\begin{frame}\maketitle\end{frame}
+\end{noheadline}
+
+\setbeamertemplate{itemize items}[default]
+\setbeamertemplate{itemize subitem}[circle]
+
+\begin{comment}
+\begin{frame}
+	\frametitle{Overview} % Table of contents slide, comment this block out to remove it
+	\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+\end{comment}
+\section{AIM}
+\begin{frame}
+\frametitle{AIM}
+\begin{itemize}
+    \item To simulate a digital communication system in the presence of noise using coherent binary phase shift keying (BPSK) with antipodal signaling and evaluate it's performance.
+\end{itemize}
+\end{frame}
+
+\section{THEORY}
+\begin{frame}[allowframebreaks]
+\frametitle{Theory}
+    
+    \begin{itemize}
+        \item For BPSK modulation method, the symbols are $s_{1}(t)=\sqrt{\frac{2E}{T}}cos(\omega_{0}t)$ and $s_{2}(t)=-\sqrt{\frac{2E}{T}}cos(\omega_{0}t)$
+        \item They are also represented as simply +E and -E or +1 and -1 in the constellation diagram.
+    \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{Theory}
+    \begin{itemize}
+
+        \item In coherent detection, the decision criteria is
+        $s_{1}(t)$ if $z(T) \geq 0$ and
+        $s_{2}(t)$ if $z(T) \leq 0$, where z is the correlation of received vector with basis function.
+        \item Bit error rate is computed as number of bits correctly demodulated/ total number of bits, analytically, this is given by $Q(\sqrt{\frac{2E}{N}})(1-Q(\sqrt{\frac{2E}{N}}))$
+    \end{itemize}
+\end{frame}
+
+\section{ALGORITHM}
+\begin{frame}[allowframebreaks]
+\frametitle{Algorithm}
+\begin{columns}
+    \begin{column}{0.9\textwidth}
+    Modulation of BPSK
+    \begin{enumerate}
+         \item Generate random integers from choices [+1,-1].
+        \item Add additive white Gaussian noise with required variance and mean 0. These represent symbols received from awgn channel.
+        \item For of each received symbols, decode them as $-1$ if less than  0, else decode as $+1$.
+        \item Compute BER rate as ratio of symbols correctly detected  to total number of symbols.
+        \item Compute BER analytically using expression.
+    \end{enumerate}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\section{OBSERVATIONS}
+\begin{frame}[allowframebreaks]
+\frametitle{Observations}
+  	\begin{figure}
+    			\centering
+    			\includegraphics[width=0.9\textwidth]{q1a.png}
+    			\caption{Constellation diagram of transmitted BPSK symbols}
+    \end{figure}
+    
+    \framebreak
+        	\begin{figure}
+        	\centering
+    		\begin{subfigure}[t]{0.49\textwidth}
+    			\centering
+    			\includegraphics[width=\textwidth,trim= 250 0 225 0,clip]{q1b_high.jpg}
+    			\caption{Constellation diagram of BPSK symbols subject to awgn with a high SNR of $20dB$}
+            \end{subfigure}
+            \begin{subfigure}[t]{0.49\textwidth}
+    			\centering
+    			\includegraphics[width=\textwidth,trim= 250 0 225 0,clip]{q1b_low.jpg}
+    			\caption{Constellation diagram of BPSK symbols subject to awgn with a low SNR of $5dB$}
+            \end{subfigure}
+            \caption{Constellation of BPSK under awgn}
+            \end{figure}
+            
+    \framebreak
+        	\begin{figure}
+        	\centering
+    		\includegraphics[width=0.9\textwidth]{q1d.png}
+            \caption{BER, simulated(red) and analytically computed(blue)}
+            \end{figure}            
+\end{frame}
+
+
+\section{INFERENCES}
+\begin{frame}[allowframebreaks]
+\frametitle{Inferences}
+    \begin{itemize}
+        \item Figure 2 shows that higher SNR results in stronger noise as expected.
+        \item Figure 3 shows that the analytical expression for BER is correct as both the plots show the same values of BER for the same values of SNR.
+     \end{itemize}
+
+\end{frame}
+\end{document}

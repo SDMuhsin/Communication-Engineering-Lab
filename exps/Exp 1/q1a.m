@@ -2,7 +2,7 @@ clc;
 clear all;
 close all;
 
-N = 1024; %No: of 1 bit symbols
+N = 100024; %No: of 1 bit symbols
 c = [-1 1]; %valid symbols
 xmod = randsrc(1,N,c); %Random sequence of 1s and 2s
 
