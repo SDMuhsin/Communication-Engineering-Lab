@@ -2,7 +2,7 @@ clc;
 clear all;
 close all;
 
-N = 100024; %No: of 1 bit symbols
+N = 1024; %No: of 1 bit symbols
 c = [-1 1]; %valid symbols
 xmod = randsrc(1,N,c); %Random sequence of 1s and 2s
 
@@ -11,7 +11,7 @@ scatterplot(xmod),title("1024 BPSK Symbols"),grid on,xlim([-2 2]);
 
 %Add AWGN
 i = 1;
-for SNR = [20,4]
+for SNR = [5 10 15 20]
     xmod_noised = awgn(complex(xmod),SNR);
     scatterplot(xmod_noised,20),title("1024 BPSK Symbols with AWGN, SNR ="+SNR),grid on,xlim([-2 2]);
     i = i + 1;
