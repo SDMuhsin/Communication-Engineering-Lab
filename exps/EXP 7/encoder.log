@@ -1,0 +1,39 @@
+Circuit: * C:\Users\sayed\Desktop\Programing\labs\Communication-Engineering-Lab\exps\EXP 7\encoder.asc
+
+WARNING: Node NC_12 is floating.
+
+Direct Newton iteration for .op point succeeded.
+Ignoring empty pin current: Ix(u1:5)
+Ignoring empty pin current: Ix(u1:6)
+Ignoring empty pin current: Ix(u1:7)
+Ignoring empty pin current: Ix(u1:8)
+Ignoring empty pin current: Ix(u1:9)
+Ignoring empty pin current: Ix(u1:10)
+Ignoring empty pin current: Ix(u1:11)
+Ignoring empty pin current: Ix(u1:12)
+Ignoring empty pin current: Ix(u1:5)
+Ignoring empty pin current: Ix(u1:6)
+Ignoring empty pin current: Ix(u1:7)
+Ignoring empty pin current: Ix(u1:8)
+Ignoring empty pin current: Ix(u1:9)
+Ignoring empty pin current: Ix(u1:10)
+Ignoring empty pin current: Ix(u1:11)
+Ignoring empty pin current: Ix(u1:12)
+
+Date: Sun Nov 15 19:16:35 2020
+Total elapsed time: 0.109 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 3938
+traniter = 3928
+tranpoints = 1756
+accept = 1576
+rejected = 180
+matrix size = 33
+fillins = 0
+solver = Normal
+Matrix Compiler1: 1.32 KB object code size  0.4/0.2/[0.2]
+Matrix Compiler2: 2.32 KB object code size  0.3/0.4/[0.2]
+
